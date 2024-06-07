@@ -5,4 +5,4 @@ COPY . .
 
 EXPOSE 8000
 EXPOSE 8126
-CMD ["simple-web-server-arm64"]
+CMD ["simple-web-server-amd64"]

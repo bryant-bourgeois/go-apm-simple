@@ -10,13 +10,23 @@ import (
 	"os"
 )
 
+func getHostname() string {
+	out, err := os.Hostname()
+	if err != nil {
+		return "default_hostname"
+	}
+	return out
+}
+
 func getRoot(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("got / request\n")
-	io.WriteString(w, "This is my website!\n")
+	pageResponse := fmt.Sprintf("Index route from %s\n", getHostname())
+	io.WriteString(w, pageResponse)
 }
 func getHello(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("got /hello request\n")
-	io.WriteString(w, "Hello, HTTP!\n")
+	pageResponse := fmt.Sprintf("Hello, from %s\n", getHostname())
+	io.WriteString(w, pageResponse)
 }
 
 func main() {
